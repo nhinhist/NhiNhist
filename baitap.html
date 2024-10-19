@@ -82,7 +82,12 @@
             position: fixed;
             width: 100%;
             bottom: 0;
+            transition: transform 0.3s ease;
         }
+        .footer-hidden {
+            transform: translateY(100%);
+        }
+
     </style>
 </head>
 <body>
@@ -247,6 +252,18 @@
                 icon.classList.add('rotate');
             }
         }
+        let lastScrollTop = 0;
+    window.addEventListener("scroll", function() {
+        const footer = document.querySelector("footer");
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            footer.classList.add("footer-hidden");
+        } else {
+            footer.classList.remove("footer-hidden");
+        }
+        lastScrollTop = scrollTop;
+    });
     </script>
 </body>
 </html>
