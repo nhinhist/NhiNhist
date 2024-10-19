@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Bài Tập</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #53a4f9;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .category {
+            margin-bottom: 20px;
+        }
+        .category h2 {
+            background-color: #53a4f9;
+            color: white;
+            padding: 10px;
+            margin: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .category-content {
+            display: none;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .category-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .category-content ul li {
+            padding: 8px;
+            margin-bottom: 5px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        .category-content ul li:hover {
+            background-color: #f1f1f1;
+            border-left: 4px solid #69a2f3;
+        }
+        .category-content ul li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        .category-content ul li a:hover {
+            color: #042957;
+        }
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+        .expand-icon.rotate {
+            transform: rotate(90deg);
+        }
+        footer {
+            background-color: #53a4f9;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Trang Bài Tập của Tôi</h1>
+        <p>Hãy khám phá các bài tập bổ ích dưới đây!</p>
+    </header>
+
+    <div class="container">
+        <div class="category">
+            <h2 onclick="toggleCategory(1)">
+                Buổi 1
+                <span class="expand-icon" id="icon1">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content1">
+                <ul>
+                    <li><a href="https://nhinhist.github.io/nhinhi/b%C3%A0i%201/bai1.html">Bài tập 1 </a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/b%C3%A0i%202-1/bai2-1.html">Bài tập 2 - 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/bai2-2.html">Bài tập 2 - 2</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/bai2-3.html">Bài tập 2 - 3</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2 onclick="toggleCategory(2)">
+                Buổi 2
+                <span class="expand-icon" id="icon2">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content2">
+                <ul>
+                    <li><a href="https://nhinhist.github.io/nhinhi/Inline.html">Bài tập 1 - Inline</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/Internal.html">Bài tập 1 - Internal</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/External.html">Bài tập 1 - External</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/bai2-1.htm">Bài tập 2 - 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/bai2-2.html">Bài tập 2 - 2</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/bai2-3.html">Bài tập 2 - 3</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/Cosplay.html">Bài tập 3</a></li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2 onclick="toggleCategory(3)">
+                Buổi 3
+                <span class="expand-icon" id="icon3">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content3">
+                <ul>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi3bai1-2">Bài tập 1 - 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi3bai1-2">Bài tập 1 - 2</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi3bai3-1">Bài tập 3 - 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi3bai3-2">Bài tập 3 - 2</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi3bai3-2">Bài tập 3 - 3</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi3bai4-2">Bài tập 4 - 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi3bai4-2">Bài tập 4 - 2</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="category">
+            <h2 onclick="toggleCategory(4)">
+                Buổi 4
+                <span class="expand-icon" id="icon4">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content4">
+                <ul>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi4bai1">Bài tập 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi4bai2">Bài tập 2</a></li>
+                </ul>
+            </div>
+        </div><div class="category">
+            <h2 onclick="toggleCategory(5)">
+                Buổi 5
+                <span class="expand-icon" id="icon5">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content5">
+                <ul>
+                    <li><a href="#https://nhinhist.github.io/nhinhi/buoi5bai1">Bài tập 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi5bai2">Bài tập 2</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi5bai3">Bài tập 3c</a></li>
+                </ul>
+            </div>
+        </div><div class="category">
+            <h2 onclick="toggleCategory(6)">
+                Buổi 6
+                <span class="expand-icon" id="icon6">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content6">
+                <ul>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi6bai1">Bài tập 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi6bai2">Bài tập 2</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi6bai3">Bài tập 3</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi6bai4">Bài tập 4</a></li>
+
+                </ul>
+            </div>
+        </div><div class="category">
+            <h2 onclick="toggleCategory(7)">
+                Buổi 7
+                <span class="expand-icon" id="icon7">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content7">
+                <ul>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi7bai1.html">Bài tập 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/buoi7bai2.html">Bài tập 2</a></li>
+                </ul>
+            </div>
+        </div><div class="category">
+            <h2 onclick="toggleCategory(8)">
+                Buổi 8
+                <span class="expand-icon" id="icon8">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content8">
+                <ul>
+                    <li><a href="https://nhinhist.github.io/nhinhi/bai1b8.html">Bài tập 1 - 1</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/bai1-2b8.html">Bài tập 1 - 2</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/bai2.html">Bài tập 2</a></li>
+                    <li><a href="https://nhinhist.github.io/nhinhi/bai3.html">Bài tập 3</a></li>
+                </ul>
+            </div>
+        </div><div class="category">
+            <h2 onclick="toggleCategory(9)">
+                Buổi 9
+                <span class="expand-icon" id="icon9">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content9">
+                <ul>
+                    <li><a href="https://nhinhist.github.io/NhiNhist/buoi9bai4.html">Bài tập 4</a></li>
+                    <li><a href="https://nhinhist.github.io/NhiNhist/buoi9bai5.html">Bài tập 5</a></li>
+                    <li><a href="https://nhinhist.github.io/NhiNhist/buoi9bai6-1.html">Bài tập 6 - 1</a></li>
+                    <li><a href="https://nhinhist.github.io/NhiNhist/buoi9bai6-2.html">Bài tập 6 - 2</a></li>
+
+                </ul>
+            </div>
+        </div><div class="category">
+            <h2 onclick="toggleCategory(10)">
+                Buổi 10
+                <span class="expand-icon" id="icon10">&#9654;</span>
+            </h2>
+            <div class="category-content" id="content10">
+                <ul>
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - Trang Bài Tập của Tôi.</p>
+    </footer>
+
+    <script>
+        function toggleCategory(categoryNumber) {
+            const content = document.getElementById('content' + categoryNumber);
+            const icon = document.getElementById('icon' + categoryNumber);
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                icon.classList.remove('rotate');
+            } else {
+                content.style.display = "block";
+                icon.classList.add('rotate');
+            }
+        }
+    </script>
+</body>
+</html>
