@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phép Toán</title>
+    <style>
+        .highlight {
+            color: red;
+            font-weight: bold;
+        }
+        table {
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 5px;
+            border: 1px solid black;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Thực hiện phép tính và hiển thị kết quả</h2>
+
+    <h3>Các phép toán</h3>
+    <table>
+        <tr>
+            <td>Phép cộng</td>
+            <td><input type="number" id="add1" value="3"></td>
+            <td>+</td>
+            <td><input type="number" id="add2" value="3"></td>
+            <td>=</td>
+            <td><input type="text" id="addResult" readonly></td>
+            <td><button onclick="performCalculation('add')">Tính</button></td>
+        </tr>
+        <tr>
+            <td>Phép trừ</td>
+            <td><input type="number" id="sub1" value="3"></td>
+            <td>-</td>
+            <td><input type="number" id="sub2" value="3"></td>
+            <td>=</td>
+            <td><input type="text" id="subResult" readonly></td>
+            <td><button onclick="performCalculation('sub')">Tính</button></td>
+        </tr>
+        <tr>
+            <td>Phép nhân</td>
+            <td><input type="number" id="mul1" value="2"></td>
+            <td>*</td>
+            <td><input type="number" id="mul2" value="2"></td>
+            <td>=</td>
+            <td><input type="text" id="mulResult" readonly></td>
+            <td><button onclick="performCalculation('mul')">Tính</button></td>
+        </tr>
+        <tr>
+            <td>Phép chia</td>
+            <td><input type="number" id="div1" value="3"></td>
+            <td>/</td>
+            <td><input type="number" id="div2" value="3"></td>
+            <td>=</td>
+            <td><input type="text" id="divResult" readonly></td>
+            <td><button onclick="performCalculation('div')">Tính</button></td>
+        </tr>
+    </table>
+
+    <h3>Kết quả các phép toán vừa thực hiện</h3>
+    <div id="recentOperations" class="result"></div>
+
+    <script>
+        function performCalculation(operation) {
+            document.getElementById('addResult').classList.remove('highlight');
+            document.getElementById('subResult').classList.remove('highlight');
+            document.getElementById('mulResult').classList.remove('highlight');
+            document.getElementById('divResult').classList.remove('highlight');
+
+            let add1 = parseFloat(document.getElementById('add1').value);
+            let add2 = parseFloat(document.getElementById('add2').value);
+            let sub1 = parseFloat(document.getElementById('sub1').value);
+            let sub2 = parseFloat(document.getElementById('sub2').value);
+            let mul1 = parseFloat(document.getElementById('mul1').value);
+            let mul2 = parseFloat(document.getElementById('mul2').value);
+            let div1 = parseFloat(document.getElementById('div1').value);
+            let div2 = parseFloat(document.getElementById('div2').value);
+
+            let addResult = add1 + add2;
+            let subResult = sub1 - sub2;
+            let mulResult = mul1 * mul2;
+            let divResult = div1 / div2;
+
+            document.getElementById('addResult').value = addResult;
+            document.getElementById('subResult').value = subResult;
+            document.getElementById('mulResult').value = mulResult;
+            document.getElementById('divResult').value = divResult;
+
+            let recentOps = '';
+
+            switch (operation) {
+                case 'add':
+                    document.getElementById('addResult').classList.add('highlight');
+                    recentOps = `<table>
+                                    <tr>
+                                        <td class="highlight">PHÉP CỘNG</td>
+                                        <td>PHÉP TRỪ</td>
+                                        <td>PHÉP NHÂN</td>
+                                        <td>PHÉP CHIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">${add1} + ${add2} = ${addResult}</td>
+                                        <td>${sub1} - ${sub2} = ${subResult}</td>
+                                        <td>${mul1} * ${mul2} = ${mulResult}</td>
+                                        <td>${div1} / ${div2} = ${divResult}</td>
+                                    </tr>
+                                </table>`;
+                    break;
+                case 'sub':
+                    document.getElementById('subResult').classList.add('highlight');
+                    recentOps = `<table>
+                                    <tr>
+                                        <td>PHÉP CỘNG</td>
+                                        <td class="highlight">PHÉP TRỪ</td>
+                                        <td>PHÉP NHÂN</td>
+                                        <td>PHÉP CHIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>${add1} + ${add2} = ${addResult}</td>
+                                        <td class="highlight">${sub1} - ${sub2} = ${subResult}</td>
+                                        <td>${mul1} * ${mul2} = ${mulResult}</td>
+                                        <td>${div1} / ${div2} = ${divResult}</td>
+                                    </tr>
+                                </table>`;
+                    break;
+                case 'mul':
+                    document.getElementById('mulResult').classList.add('highlight');
+                    recentOps = `<table>
+                                    <tr>
+                                        <td>PHÉP CỘNG</td>
+                                        <td>PHÉP TRỪ</td>
+                                        <td class="highlight">PHÉP NHÂN</td>
+                                        <td>PHÉP CHIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>${add1} + ${add2} = ${addResult}</td>
+                                        <td>${sub1} - ${sub2} = ${subResult}</td>
+                                        <td class="highlight">${mul1} * ${mul2} = ${mulResult}</td>
+                                        <td>${div1} / ${div2} = ${divResult}</td>
+                                    </tr>
+                                </table>`;
+                    break;
+                case 'div':
+                    document.getElementById('divResult').classList.add('highlight');
+                    recentOps = `<table>
+                                    <tr>
+                                        <td>PHÉP CỘNG</td>
+                                        <td>PHÉP TRỪ</td>
+                                        <td>PHÉP NHÂN</td>
+                                        <td class="highlight">PHÉP CHIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>${add1} + ${add2} = ${addResult}</td>
+                                        <td>${sub1} - ${sub2} = ${subResult}</td>
+                                        <td>${mul1} * ${mul2} = ${mulResult}</td>
+                                        <td class="highlight">${div1} / ${div2} = ${divResult}</td>
+                                    </tr>
+                                </table>`;
+                    break;
+            }
+
+            document.getElementById('recentOperations').innerHTML = recentOps;
+        }
+    </script>
+</body>
+</html>

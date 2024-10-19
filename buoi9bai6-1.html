@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đổi màu</title>
+    <style>
+        #changeText {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #e7e7e7;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div id="changeText">đổi màu tôi đi</div>
+    <button onclick="changeColor()">xanh</button>
+
+    <script>
+        function changeColor() {
+            document.body.style.backgroundColor = "blue";
+            document.body.style.color = "white";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Ký</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center; color: #800080;">FORM ĐĂNG KÝ</h2>
+    <form id="registerForm">
+        <label for="ho">Họ:</label>
+        <input type="text" id="ho" name="ho" required>
+
+        <label for="ten">Tên:</label>
+        <input type="text" id="ten" name="ten" required>
+
+        <label for="ngaysinh">Ngày sinh:</label>
+        <div class="flex-row">
+            <select name="ngay" required>
+                <option value="">Ngày</option>
+                <script>
+                    for (let i = 1; i <= 31; i++) {
+                        document.write('<option value="' + i + '">' + i + '</option>');
+                    }
+                </script>
+            </select>
+            <select name="thang" required>
+                <option value="">Tháng</option>
+                <script>
+                    for (let i = 1; i <= 12; i++) {
+                        document.write('<option value="' + i + '">Tháng ' + i + '</option>');
+                    }
+                </script>
+            </select>
+            <select name="nam" required>
+                <option value="">Năm</option>
+                <script>
+                    for (let i = 1980; i <= new Date().getFullYear(); i++) {
+                        document.write('<option value="' + i + '">' + i + '</option>');
+                    }
+                </script>
+            </select>
+        </div>
+        <label for="gioitinh">Giới tính:</label>
+        <input type="radio" id="nam" name="gioitinh" value="Nam" required> Nam
+        <input type="radio" id="nu" name="gioitinh" value="Nữ" required> Nữ
+
+        <label for="sodienthoai">Số điện thoại:</label>
+        <input type="text" id="sodienthoai" name="sodienthoai" required pattern="[0-9]{10}" title="Số điện thoại phải là 10 số.">
+
+        <label>Sở thích:</label>
+        <input type="checkbox" name="sothich" value="Đọc sách"> Đọc sách
+        <input type="checkbox" name="sothich" value="Xem phim"> Xem phim
+        <input type="checkbox" name="sothich" value="Nghe nhạc"> Nghe nhạc
+        <input type="checkbox" name="sothich" value="Đá bóng"> Đá bóng
+
+        <label for="khac">Khác:</label>
+        <textarea id="khac" name="khac" rows="4"></textarea>
+
+        <div class="flex-row">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+
+</body>
+</html>
