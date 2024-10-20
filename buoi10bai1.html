@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý thông tin cá nhân</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="button"] {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        input[type="button"].secondary {
+            background-color: #f0ad4e;
+        }
+
+        input[type="button"].secondary:hover {
+            background-color: #ec971f;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .table-container {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quản lý thông tin cá nhân</h1>
+
+        <form id="personForm">
+            <input type="text" id="id" placeholder="ID">
+            <input type="text" id="name" placeholder="Tên">
+            <input type="date" id="date">
+            <input type="text" id="job" placeholder="Công việc">
+            <input type="text" id="contact" placeholder="Liên lạc">
+        </form>
+
+        <div class="btn-group">
+            <input type="button" value="Thêm" onclick="addPerson()">
+            <input type="button" class="secondary" value="Ghim công việc" onclick="pinJob()">
+            <input type="button" class="secondary" value="Hủy ghim công việc" onclick="unpinJob()">
+            <input type="button" value="Xóa mục đã chọn" onclick="deleteSelected()">
+            <select id="sortSelect" onchange="sortTable()">
+                <option value="id">Sắp xếp theo ID</option>
+                <option value="name">Sắp xếp theo Tên</option>
+                <option value="date">Sắp xếp theo Ngày</option>
+            </select>
+        </div>
+
+        <div class="table-container">
+            <table id="personTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên</th>
+                        <th>Ngày</th>
+                        <th>Công việc</th>
+                        <th>Liên lạc</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function addPerson() {
+            const id = document.getElementById("id").value;
+            const name = document.getElementById("name").value;
+            const date = document.getElementById("date").value;
+            const job = document.getElementById("job").value;
+            const contact = document.getElementById("contact").value;
+
+            if (id && name && date && job && contact) {
+                const table = document.getElementById("personTable").getElementsByTagName("tbody")[0];
+                const newRow = table.insertRow();
+
+                newRow.insertCell(0).innerHTML = id;
+                newRow.insertCell(1).innerHTML = name;
+                newRow.insertCell(2).innerHTML = date;
+                newRow.insertCell(3).innerHTML = job;
+                newRow.insertCell(4).innerHTML = contact;
+
+                clearForm();
+            } else {
+                alert("Vui lòng điền đầy đủ thông tin.");
+            }
+        }
+
+        function clearForm() {
+            document.getElementById("personForm").reset();
+        }
+
+        function pinJob() {
+            const table = document.getElementById("personTable");
+            const selectedRow = table.querySelector("tbody tr.selected");
+            if (selectedRow) {
+                selectedRow.style.backgroundColor = "#ffff99";
+            } else {
+                alert("Chọn hàng để ghim.");
+            }
+        }
+
+        function unpinJob() {
+            const table = document.getElementById("personTable");
+            const selectedRow = table.querySelector("tbody tr.selected");
+            if (selectedRow) {
+                selectedRow.style.backgroundColor = "";
+            } else {
+                alert("Chọn hàng để hủy ghim.");
+            }
+        }
+
+        function deleteSelected() {
+            const table = document.getElementById("personTable");
+            const selectedRow = table.querySelector("tbody tr.selected");
+            if (selectedRow) {
+                table.deleteRow(selectedRow.rowIndex);
+            } else {
+                alert("Chọn hàng để xóa.");
+            }
+        }
+
+        function sortTable() {
+            const table = document.getElementById("personTable").getElementsByTagName("tbody")[0];
+            const rows = Array.from(table.rows);
+            const sortBy = document.getElementById("sortSelect").value;
+            let index = 0;
+
+            if (sortBy === "name") index = 1;
+            else if (sortBy === "date") index = 2;
+
+            rows.sort((a, b) => a.cells[index].innerHTML.localeCompare(b.cells[index].innerHTML));
+
+            table.innerHTML = "";
+            rows.forEach(row => table.appendChild(row));
+        }
+
+        document.getElementById("personTable").addEventListener("click", function(event) {
+            const rows = document.querySelectorAll("#personTable tbody tr");
+            rows.forEach(row => row.classList.remove("selected"));
+
+            const row = event.target.parentNode;
+            row.classList.add("selected");
+        });
+    </script>
+</body>
+</html>
